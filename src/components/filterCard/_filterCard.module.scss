@@ -1,16 +1,42 @@
 .filterCard {
   position: relative;
-  box-shadow: rgb(0 0 0 / 10%) 0 0 20px;
-  font-size: 16px;
   font-weight: bold;
-  display: inline-block;
+  display: flex;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   padding: 0;
+  margin: 2px;
   background-color: white;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 26px;
+  -moz-border-radius: 26px;
+  border-radius: 26px;
   overflow: hidden;
+  border: 1px solid grey;
+}
+.filterCard:hover{
+  background-color: rgb(191, 53, 107);
+}
+
+button{
+  background-color: #fff;
+  border: none;
+  color: black;
+  padding: 6px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 16px;
+  min-width: 70px;
+}
+
+button:focus{
+  color: #fff;
+  background-color: rgb(191, 53, 107);
+  opacity: 1;
+}
+button:hover{
+  color: #fff;
+  background-color: rgb(191, 53, 107);
+  opacity: 1;
 }

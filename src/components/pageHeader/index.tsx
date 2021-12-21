@@ -1,12 +1,45 @@
-import React from "react";
-import css from "./_pageHeader.module.scss";
 
-const PageHeader = () => {
-  return (
-    <div className={css.pageHeader}>
-      <h2>NOS PARTENAIRES EXCLUSIFS</h2>
-    </div>
-  );
+import css from "./_pageHeader.module.scss";
+import { IPartnerCategoryEntity } from '@domains/entities/interfaces/iPartnerCategory';
+import FilterCard from "@components/filterCard";
+
+interface Props{
+  filters: IPartnerCategoryEntity[];
+  emitSelctedFilters: (selectedFilters:IPartnerCategoryEntity[]) => {};
+}
+
+const PageHeader = (props: Props) => {
+  console.log('filters',props.filters);
+return <div className= {css.pageHeader}> 
+<button className={css.tags} onClick={()=> clearFilters(props)}>Tous</button>
+{maptoCards(props)}</div>
+}
+
+const selectedFilters :IPartnerCategoryEntity[]=[];
+
+const selectFilter = (filter: IPartnerCategoryEntity, props: Props) => {
+  const index = selectedFilters.indexOf(filter);
+  if(index > -1){
+    selectedFilters.splice(index,1);
+  }else{
+    selectedFilters.push(filter)
+  }
+  props.emitSelctedFilters(selectedFilters);
+  console.log("Button Clicked", selectedFilters);
+};
+
+
+const clearFilters = (props: Props) => {
+  selectedFilters.splice(0, selectedFilters.length);
+  props.emitSelctedFilters(selectedFilters);
+};
+
+ const maptoCards = (props: Props) => {
+    if(props.filters.length > 0){
+        return props.filters?.map(function (filter) {
+            return( <FilterCard filter= {filter} select={() => selectFilter(filter, props)}/> );
+          });
+  };
 };
 
 export default PageHeader;

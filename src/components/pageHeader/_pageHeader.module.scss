@@ -1,10 +1,41 @@
 @import "/src/styles/variables";
 
 .pageHeader {
-  background-color: $secondary;
-  color: $white;
-  height: 250px;
-  display: flex;
-  align-items: center;
+  background-color: white;
+  color: #fff;
+  height: 185px;
+  display: inline-flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+  border-bottom-right-radius: 11px;
+  border-bottom-left-radius: 11px;
+  margin-bottom: 25px;
+  box-shadow: rgb(0 0 0 / 21%) 0 0 18px;
+
+}
+
+.tags{
+  background-color: #fff;
+  border: none;
+  color: black;
+  padding: 7px 20px ;
+  text-align: center;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+  min-width: 70px;
+  border: 1px solid grey;
+}
+.active{
+  background-color: rgb(191, 53, 107);
+  opacity: 0.9;
+  color: #fff;
+}
+.tags:hover{
+  color: #f1f1f1;
+  background-color: rgb(191, 53, 107);
+  opacity: 1;
 }
