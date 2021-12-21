@@ -2,6 +2,7 @@
 import css from "./_pageHeader.module.scss";
 import { IPartnerCategoryEntity } from '@domains/entities/interfaces/iPartnerCategory';
 import FilterCard from "@components/filterCard";
+import { useState } from "react";
 
 interface Props{
   filters: IPartnerCategoryEntity[];
@@ -9,9 +10,16 @@ interface Props{
 }
 
 const PageHeader = (props: Props) => {
-  console.log('filters',props.filters);
+  const [clicked, isClicked] = useState(true);
+  const maptoCards = (props: Props) => {
+    if(props.filters.length > 0){
+        return props.filters?.map(function (filter) {
+            return( <FilterCard filter={filter} isTousSelected= {clicked} select={() => isClicked(selectFilter(filter, props))}/> );
+          });
+  };
+};
 return <div className= {css.pageHeader}> 
-<button className={css.tags} onClick={()=> clearFilters(props)}>Tous</button>
+<button className={`${css.tags} ${clicked ?css.active :''}`} onClick={()=> isClicked(clearFilters(props))}>Tous</button>
 {maptoCards(props)}</div>
 }
 
@@ -25,21 +33,16 @@ const selectFilter = (filter: IPartnerCategoryEntity, props: Props) => {
     selectedFilters.push(filter)
   }
   props.emitSelctedFilters(selectedFilters);
-  console.log("Button Clicked", selectedFilters);
+  return false;
 };
 
 
 const clearFilters = (props: Props) => {
   selectedFilters.splice(0, selectedFilters.length);
   props.emitSelctedFilters(selectedFilters);
+  return true;
 };
 
- const maptoCards = (props: Props) => {
-    if(props.filters.length > 0){
-        return props.filters?.map(function (filter) {
-            return( <FilterCard filter= {filter} select={() => selectFilter(filter, props)}/> );
-          });
-  };
-};
+
 
 export default PageHeader;

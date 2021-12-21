@@ -30,12 +30,17 @@ button{
   min-width: 70px;
 }
 
-button:focus{
+/* button:focus{
+  color: #fff;
+  background-color: rgb(191, 53, 107);
+  opacity: 1;
+} */
+button:hover{
   color: #fff;
   background-color: rgb(191, 53, 107);
   opacity: 1;
 }
-button:hover{
+.selected{
   color: #fff;
   background-color: rgb(191, 53, 107);
   opacity: 1;
